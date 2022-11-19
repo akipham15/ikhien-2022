@@ -40,7 +40,7 @@ nav a.router-link-exact-active {
 
 .wrap-content {
     height: 40rem;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
 }
 .wrap-footer {
     height: 7.2rem;
@@ -85,7 +85,7 @@ nav a.router-link-exact-active {
 }
 
 .point-hidden {
-    width: 80%;
+    width: 60%;
     margin: auto;
     background-color: #2a698b;
     background-image: url("../images/point-hidden.png");
@@ -119,10 +119,17 @@ nav a.router-link-exact-active {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 1s ease;
+    transition: opacity 0.5s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0;
+    opacity: 0;
+}
+
+.vote {
+    font-weight: bold;
+}
+.answer-win {
+    color: #c40000;
 }

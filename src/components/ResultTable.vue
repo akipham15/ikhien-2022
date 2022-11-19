@@ -16,188 +16,161 @@
         <tr>
           &nbsp;
         </tr>
-        <tr v-for="item in data" :key="item">
-          <th>{{ item.name }}</th>
-          <td>{{ item.point.present }}</td>
-          <td>{{ item.point.answer }}</td>
-          <td>{{ item.point.question }}</td>
-          <td>
-            <div
-              v-if="!item.answer_show"
-              class="point-hidden"
-              @click="item.answer_show = !item.answer_show"
-            >
-              &nbsp;
-            </div>
-            <Transition name="fade" mode="out-in">
-              <div v-if="item.answer_show" class="point">{{ item.answer_vote }}</div>
-            </Transition>
-          </td>
-          <td>
-            <div
-              v-if="!item.question_show"
-              class="point-hidden"
-              @click="item.question_show = !item.question_show"
-            >
-              &nbsp;
-            </div>
-            <Transition name="fade" mode="out-in">
-              <div v-if="item.question_show" class="point">{{ item.question_vote }}</div>
-            </Transition>
-          </td>
-          <th>{{ item.point.total }}</th>
-        </tr>
+        <template v-for="group in data" :key="group.id">
+          <tr v-for="item in group.teams" :key="item.id">
+            <th>{{ item.name }}</th>
+            <td>{{ item.point.present }}</td>
+            <td>
+              <!-- question -->
+              <Transition name="fade" mode="out-in">
+                <p :key="item.point.question">{{ item.point.question }}</p>
+              </Transition>
+            </td>
+            <td>
+              <!-- answer -->
+              <Transition name="fade" mode="out-in">
+                <p :key="item.point.answer">{{ item.point.answer }}</p>
+              </Transition>
+            </td>
+            <td>
+              <!-- round 1 -->
+              <div
+                v-if="!item.round_one_show"
+                class="point-hidden"
+                @click="item.round_one_show = !item.round_one_show"
+              >
+                &nbsp;
+              </div>
+              <Transition name="fade" mode="out-in">
+                <template v-if="item.round_one_show">
+                  <div v-if="item.team_index % 2 == 0" class="point">
+                    <p
+                      :class="[
+                        group.round_one_show && item.answer_win === true
+                          ? 'vote answer-win'
+                          : 'vote',
+                      ]"
+                    >
+                      {{ item.answer_vote }}
+                    </p>
+                  </div>
+                  <div v-else class="point vote">
+                    {{ item.question_vote }}
+                  </div>
+                </template>
+              </Transition>
+            </td>
+            <td>
+              <!-- round 2 -->
+              <div
+                v-if="!item.round_two_show"
+                class="point-hidden"
+                @click="item.round_two_show = !item.round_two_show"
+              >
+                &nbsp;
+              </div>
+              <Transition name="fade" mode="out-in">
+                <template v-if="item.round_two_show">
+                  <div v-if="item.team_index % 2 == 1" class="point">
+                    <p
+                      :class="[
+                        group.round_one_show && item.answer_win === true
+                          ? 'vote answer-win'
+                          : 'vote',
+                      ]"
+                    >
+                      {{ item.answer_vote }}
+                    </p>
+                  </div>
+                  <div v-else class="point vote">
+                    {{ item.question_vote }}
+                  </div>
+                </template>
+              </Transition>
+            </td>
+            <th>
+              <Transition name="fade" mode="out-in">
+                <p :key="item.point.total">{{ item.point.total }}</p>
+              </Transition>
+            </th>
+          </tr>
+        </template>
       </tbody>
     </table>
-    <!-- <div>
-    <button @click="addClass">Add Class</button>
-    <button @click="countTo(100, 50, 'reduce')">reduce</button>
-    <button @click="countTo(0, 50, 'increase')">increase</button>
-    <button @click="flyMeTo('reduce', 'increase', true)">di chuyen</button>
-  </div> -->
   </div>
 </template>
   
 <script>
 import ApiService from "@/services/api.service";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watchEffect } from "vue";
 export default {
   setup() {
-    const name_row = ["Trình Bày", "Hỏi", "Đáp", "Cướp Điểm", "Tổng Điểm"];
-    const data_default = ApiService.getData();
-    console.log("data_default: ", data_default);
-    const id_team = ref(null);
-    const data = ref([
-      {
-        answer_vote: 0,
-        id: 1,
-        name: "team_1",
-        opposite_team: "team_2",
-        point: {
-          answer: 15,
-          present: 85,
-          question: 0,
-          total: 100,
-        },
-        point_after_steal: {
-          answer: 0,
-          present: 85,
-          question: 0,
-          total: 85,
-        },
-        question_vote: 0,
-      },
-
-      {
-        answer_vote: 0,
-        id: 2,
-        name: "team_2",
-        opposite_team: "team_1",
-        point: {
-          answer: 0,
-          present: 0,
-          question: 16,
-          total: 16,
-        },
-        point_after_steal: {
-          answer: 0,
-          present: 0,
-          question: 16,
-          total: 31,
-        },
-        question_vote: 2,
-      },
-      {
-        answer_vote: 0,
-        id: 1,
-        name: "team_1",
-        opposite_team: "team_2",
-        point: {
-          answer: 15,
-          present: 85,
-          question: 0,
-          total: 100,
-        },
-        point_after_steal: {
-          answer: 0,
-          present: 85,
-          question: 0,
-          total: 85,
-        },
-        question_vote: 0,
-      },
-
-      {
-        answer_vote: 0,
-        id: 2,
-        name: "team_2",
-        opposite_team: "team_1",
-        point: {
-          answer: 0,
-          present: 0,
-          question: 16,
-          total: 16,
-        },
-        point_after_steal: {
-          answer: 0,
-          present: 0,
-          question: 16,
-          total: 31,
-        },
-        question_vote: 2,
-      },
-      {
-        answer_vote: 0,
-        id: 1,
-        name: "team_1",
-        opposite_team: "team_2",
-        point: {
-          answer: 15,
-          present: 85,
-          question: 0,
-          total: 100,
-        },
-        point_after_steal: {
-          answer: 0,
-          present: 85,
-          question: 0,
-          total: 85,
-        },
-        question_vote: 0,
-      },
-
-      {
-        answer_vote: 0,
-        id: 2,
-        name: "team_2",
-        opposite_team: "team_1",
-        point: {
-          answer: 0,
-          present: 0,
-          question: 16,
-          total: 16,
-        },
-        point_after_steal: {
-          answer: 0,
-          present: 0,
-          question: 16,
-          total: 31,
-        },
-        question_vote: 2,
-      },
-    ]);
-
-    const show = ref(false);
+    const data = ref([]);
 
     onMounted(() => {
-      data.value.map((team) => ({ ...team, answer_show: false, question_show: false }));
+      const { data: gData } = ApiService.getData();
+      const stopWatchEffect = watchEffect(() => {
+        if (gData && gData.value) {
+          data.value = gData.value;
+          data.value.map((group) => ({
+            ...group,
+            round_one_show: false,
+            round_two_show: false,
+          }));
+          stopWatchEffect();
+        }
+      });
+    });
+
+    watchEffect(() => {
+      if (data.value) {
+        data.value = data.value.map((group) => {
+          const round_one_show = Object.values(group.teams).every(
+            (team) => team.round_one_show === true
+          );
+          const round_two_show = Object.values(group.teams).every(
+            (team) => team.round_two_show === true
+          );
+
+          if (round_one_show === true) {
+            group.teams.map((team) => {
+              if (team.team_index % 2 == 1) {
+                team.point.question = team.point_after_steal.question;
+              }
+              if (team.team_index % 2 == 0) {
+                team.point.answer = team.point_after_steal.answer;
+              }
+              team.point.total =
+                team.point.answer + team.point.question + team.point.present;
+              return { ...team };
+            });
+          }
+
+          if (round_two_show === true) {
+            group.teams.map((team) => {
+              if (team.team_index % 2 == 0) {
+                team.point.question = team.point_after_steal.question;
+              }
+              if (team.team_index % 2 == 1) {
+                team.point.answer = team.point_after_steal.answer;
+              }
+              team.point.total =
+                team.point.answer + team.point.question + team.point.present;
+              return { ...team };
+            });
+          }
+
+          return {
+            ...group,
+            round_one_show: round_one_show,
+            round_two_show: round_two_show,
+          };
+        });
+      }
     });
 
     return {
       data,
-      name_row,
-      id_team,
-      show,
     };
   },
 };

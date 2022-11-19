@@ -2,23 +2,22 @@ import { ref } from 'vue'
 import api from './api'
 
 class ApiService {
-  
     getData = () => {
-        const data_default = ref(null)
+        const data = ref(null)
 
         api({
             url: `/api/data/default/`,
             method: 'GET',
         }).then(res => {
             if (res && res.status == 200) {
-                console.log('res.data.results: ', res.data.results)
-                data_default.value = res.data.results
+                // console.log('res.data.results: \n', res.data)
+                data.value = res.data
             }
         }).catch(err => {
             console.log(err)
         })
 
-        return { data_default }
+        return { data }
     }
 }
 
