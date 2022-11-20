@@ -36,7 +36,7 @@
               <!-- round 1 -->
               <div
                 v-if="!item.round_one_show"
-                class="point-hidden"
+                class="col col-10 point-hidden"
                 @click="item.round_one_show = !item.round_one_show"
               >
                 &nbsp;
@@ -64,7 +64,7 @@
               <!-- round 2 -->
               <div
                 v-if="!item.round_two_show"
-                class="point-hidden"
+                class="col col-10 point-hidden"
                 @click="item.round_two_show = !item.round_two_show"
               >
                 &nbsp;

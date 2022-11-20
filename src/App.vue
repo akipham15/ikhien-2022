@@ -1,13 +1,10 @@
 <template>
-  <div class="wrap-header"></div>
-  <div class="container">
-    <router-view />
-  </div>
+  <router-view />
   <!-- <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/detail">Detail</router-link>
   </nav> -->
-  <div class="wrap-footer"></div>
+  <div class="wrap-footer mt-5"></div>
 </template>
 
 <style>

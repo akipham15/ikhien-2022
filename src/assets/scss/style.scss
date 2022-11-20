@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600&display=swap");
 
 :root {
-    --header-size: 12rem;
+    --header-size: 20vh;
 }
 
 body {
@@ -29,21 +29,8 @@ nav a.router-link-exact-active {
     color: #42b983;
 }
 
-.wrap-header {
-    float: left;
-    left: 0;
-    top: 0;
-    height: var(--header-size);
-    width: 100%;
-    background-color: #1a2543;
-}
-
-.wrap-content {
-    height: 40rem;
-    font-size: 1.5rem;
-}
 .wrap-footer {
-    height: 7.2rem;
+    height: 7rem;
     width: 100%;
     background-image: url("../images/star.png");
     background-repeat: no-repeat;
@@ -58,19 +45,11 @@ nav a.router-link-exact-active {
 
 .table-radius {
     border-radius: 3em;
-    overflow: hidden;
 }
 
 .page-header {
-    position: absolute;
-    top: 1rem;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    float: left;
     text-align: center;
+    background-color: #1a2543;
     color: #ffd900;
     font-weight: bold;
     text-transform: uppercase;
@@ -85,7 +64,6 @@ nav a.router-link-exact-active {
 }
 
 .point-hidden {
-    width: 60%;
     margin: auto;
     background-color: #2a698b;
     background-image: url("../images/point-hidden.png");
