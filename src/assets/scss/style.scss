@@ -139,6 +139,7 @@ nav a.router-link-exact-active {
 .item-center {
     display: flex;
     justify-content: center;
+    align-items: end;   
 }
 
 .color-white {
@@ -354,11 +355,12 @@ td {
 
 .imspo_mt__dt-t {
     color: black;
+    font-weight: bold;
+    padding-left: 32px;
 }
 
 .ellipsisize {
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -375,7 +377,7 @@ td {
 }
 
 .imspo_mt__mtc-no .bN3Vue {
-    height: 24px;
+    height: 20px;
 }
 
 .menu {

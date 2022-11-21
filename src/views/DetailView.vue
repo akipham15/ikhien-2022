@@ -27,31 +27,31 @@
             </tr>
             <tr>
               <td 
-                :class="data.question_vote >= opposite_data.question_vote ? 'text-green':'text-red'"
+                :class="data.question_vote >= opposite_data.question_vote  ? 'text-green':'text-red'"
               >
                 {{data.question_vote >= opposite_data.question_vote ? 'WIN':'LOSE'}}
                 {{ percentage_round_1.data_question_vote }}%
               </td>
               <td>ĐỐI KHÁNG LẦN 1</td>
               <td
-                :class="data.question_vote >= opposite_data.question_vote ? 'text-green':'text-red'"
+                :class="data.question_vote <= opposite_data.question_vote ? 'text-green':'text-red'"
               >
-                {{data.question_vote >= opposite_data.question_vote ? 'WIN':'LOSE'}}
+                {{data.question_vote <= opposite_data.question_vote ? 'WIN':'LOSE'}}
                 {{ percentage_round_1.opposite_data_question_vote }}%
               </td>
             </tr>
             <tr>
               <td 
-                :class="data.answer_vote >= opposite_data.answer_vote ? 'text-green':'text-red'"
+                :class="data.answer_vote >= opposite_data.answer_vote  ? 'text-green':'text-red'"
               >
                 {{data.answer_vote >= opposite_data.answer_vote ? 'WIN':'LOSE'}}
                 {{ percentage_round_2.data_answer_vote }}%
               </td>
               <td>ĐỐI KHÁNG LẦN 2</td>
               <td
-                :class="data.answer_vote >= opposite_data.answer_vote ? 'text-green':'text-red'"
+                :class="data.answer_vote <= opposite_data.answer_vote  ? 'text-green':'text-red'"
               >
-                {{data.answer_vote >= opposite_data.answer_vote ? 'WIN':'LOSE'}}
+                {{data.answer_vote <= opposite_data.answer_vote ? 'WIN':'LOSE'}}
                 {{ percentage_round_2.opposite_data_answer_vote }}%
               </td>
             </tr>
