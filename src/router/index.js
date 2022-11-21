@@ -14,6 +14,17 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/DetailView.vue')
+  },
+  {
+    path: '/opposite-pair',
+    name: 'oppositePair',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ListOppositePair.vue')
+  },
+  {
+    path: '/opposite-pair/:id',
+    name: 'DetailOppositePair',
+    component: () => import(/* webpackChunkName: "about" */ '../views/DetailView.vue'),
+    props: true,
   }
 ]
 
