@@ -29,8 +29,12 @@ nav a.router-link-exact-active {
     color: #42b983;
 }
 
+.wrap-content{
+    min-height: 65vh;
+}
+
 .wrap-footer {
-    height: 7rem;
+    height: 5rem;
     width: 100%;
     background-image: url("../images/star.png");
     background-repeat: no-repeat;
@@ -160,7 +164,7 @@ nav a.router-link-exact-active {
 }
 
 .imso-medium-font {
-    font-family: arial,sans-serif-medium,sans-serif;
+    font-family: arial, sans-serif-medium, sans-serif;
     font-weight: normal;
 }
 
@@ -188,7 +192,8 @@ table {
     border-color: grey;
 }
 
-.liveresults-sports-immersive__match-tile, .liveresults-sports-immersive__empty-tile {
+.liveresults-sports-immersive__match-tile,
+.liveresults-sports-immersive__empty-tile {
     width: 50%;
 }
 
@@ -207,7 +212,8 @@ td {
     width: 100%;
 }
 
-.liveresults-sports-immersive__match-tile, .liveresults-sports-immersive__empty-tile {
+.liveresults-sports-immersive__match-tile,
+.liveresults-sports-immersive__empty-tile {
     width: 50%;
 }
 
@@ -298,7 +304,7 @@ td {
 }
 
 .imso-medium-font {
-    font-family: arial,sans-serif-medium,sans-serif;
+    font-family: arial, sans-serif-medium, sans-serif;
     font-weight: normal;
 }
 
@@ -359,7 +365,7 @@ td {
 .liveresults-sports-immersive__hide-element {
     border: 0;
     clip: rect(1px 1px 1px 1px);
-    clip: rect(1px,1px,1px,1px);
+    clip: rect(1px, 1px, 1px, 1px);
     height: 1px;
     margin: -1px;
     overflow: hidden;
@@ -370,4 +376,12 @@ td {
 
 .imspo_mt__mtc-no .bN3Vue {
     height: 24px;
+}
+
+.menu {
+    position: absolute;
+    top: 80%;
+    left: 88%;
+    transform: translateY(-50%) !important;
+    text-align: left;
 }
