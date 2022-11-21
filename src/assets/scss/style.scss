@@ -111,3 +111,263 @@ nav a.router-link-exact-active {
 .answer-win {
     color: #c40000;
 }
+
+.text-red {
+    color: red;
+    font-weight: bold;
+}
+
+.text-green {
+    color: #42b983;
+    font-weight: bold;
+}
+
+.list-number {
+    --bs-list-group-item-padding-x: 1rem;
+    --bs-list-group-item-padding-y: 0.5rem;
+}
+
+.edit-tag-a {
+    color: white;
+    text-decoration: none;
+}
+
+.item-center {
+    display: flex;
+    justify-content: center;
+}
+
+.color-white {
+    color: white;
+    font-size: 20px;
+}
+
+.bg-white {
+    margin-top: 20px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border: 2px solid white;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+// --------------
+.block-opposite {
+    border-bottom: solid 1px #cfe3f1;
+    // padding-bottom: 30px;
+    text-align: left;
+}
+
+.imso-medium-font {
+    font-family: arial,sans-serif-medium,sans-serif;
+    font-weight: normal;
+}
+
+.edit-border {
+    border-bottom: 1px solid #cfe3f1;
+    padding: 12px 24px 10px;
+}
+
+.text-black {
+    color: black;
+}
+
+.liveresults-sports-immersive__match-grid {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+.liveresults-sports-immersive__match-tile, .liveresults-sports-immersive__empty-tile {
+    width: 50%;
+}
+
+.liveresults-sports-immersive__match-grid-right-border {
+    border-right: solid 1px #9aa0a6;
+}
+
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+.liveresults-sports-immersive__match-grid {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.liveresults-sports-immersive__match-tile, .liveresults-sports-immersive__empty-tile {
+    width: 50%;
+}
+
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+.liveresults-sports-immersive__match-grid {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.liveresults-sports-immersive__match-grid {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.imso-loa {
+    cursor: pointer;
+}
+
+.KAIX8d {
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 0;
+}
+
+.imspo_mt__mtc-no .S6bEgc {
+    height: 16px;
+}
+
+.imspo_mt__mtc-no .lc {
+    width: 64px;
+    padding-left: 24px;
+}
+
+.lc {
+    box-sizing: border-box;
+    padding: 0 16px 0;
+}
+
+.imspo_mt__rg {
+    padding-left: 6px;
+    width: 6px;
+}
+
+.h8T7ab {
+    width: 1px;
+    padding: 0;
+}
+
+.imspo_mt__sc {
+    width: 104px;
+}
+
+.imspo_mt__mtc-no .BAX2sc {
+    padding: 0 24px;
+}
+
+.BAX2sc {
+    // color: #9aa0a6;
+    color: black;
+}
+
+.imspo_mt__lg-st-co {
+    font-size: 14px;
+    padding-bottom: 6px;
+}
+
+.kwbMAe {
+    // background-color: #3c4043;
+    background-color: #9aa0a6;
+}
+
+.GOsQPe {
+    font-size: 14px;
+    color: #bdc1c6;
+    text-align: center;
+    padding: 0;
+    position: relative;
+}
+
+.imspo_mt__ms-w {
+    line-height: 1.4;
+}
+
+.imso-medium-font {
+    font-family: arial,sans-serif-medium,sans-serif;
+    font-weight: normal;
+}
+
+.imspo_mt__date {
+    text-transform: capitalize;
+}
+
+.imspo_mt__pm-infc {
+    color: black;
+}
+
+.imspo_mt__pm-inf {
+    font-size: 14px;
+}
+
+.imspo_mt__wt .imspo_mt__ndl-p {
+    padding: 0 16px;
+}
+
+.L5Kkcd {
+    height: 32px;
+}
+
+.imspo_mt__mtc-no .lc {
+    width: 64px;
+    padding-left: 24px;
+}
+
+.imspo_mt__lgc img {
+    display: block;
+}
+
+.imso_btl__mh-logo {
+    padding: 0;
+    margin: -0;
+    border-radius: 0;
+}
+
+.tns-c {
+    padding: 0;
+}
+
+.imspo_mt__tt-w {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.imspo_mt__dt-t {
+    color: black;
+}
+
+.ellipsisize {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.liveresults-sports-immersive__hide-element {
+    border: 0;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px,1px,1px,1px);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.imspo_mt__mtc-no .bN3Vue {
+    height: 24px;
+}
