@@ -112,7 +112,7 @@ export default {
       const stopWatchEffect = watchEffect(() => {
         if (gData && gData.value) {
           data.value = gData.value;
-          data.value.map((group) => ({
+          data.value = data.value.map((group) => ({
             ...group,
             round_one_show: false,
             round_two_show: false,
@@ -122,50 +122,56 @@ export default {
       });
     });
 
+    const updateData = () => {
+      data.value = data.value.map((group) => {
+        const round_one_show = Object.values(group.teams).some(
+          (team) => team.round_one_show === true
+        );
+        const round_two_show = Object.values(group.teams).some(
+          (team) => team.round_two_show === true
+        );
+
+        if (round_one_show === true) {
+          group.teams.map((team) => {
+            if (team.team_index % 2 == 1) {
+              team.point.question = team.point_after_steal.question;
+            }
+            if (team.team_index % 2 == 0) {
+              team.point.answer = team.point_after_steal.answer;
+            }
+            team.round_one_show = round_one_show
+            team.point.total =
+              team.point.answer + team.point.question + team.point.present;
+            return { ...team };
+          });
+        }
+
+        if (round_two_show === true) {
+          group.teams.map((team) => {
+            if (team.team_index % 2 == 0) {
+              team.point.question = team.point_after_steal.question;
+            }
+            if (team.team_index % 2 == 1) {
+              team.point.answer = team.point_after_steal.answer;
+            }
+            team.round_two_show = round_two_show
+            team.point.total =
+              team.point.answer + team.point.question + team.point.present;
+            return { ...team };
+          });
+        }
+
+        return {
+          ...group,
+          round_one_show: round_one_show,
+          round_two_show: round_two_show,
+        };
+      });
+    };
+
     watchEffect(() => {
       if (data.value) {
-        data.value = data.value.map((group) => {
-          const round_one_show = Object.values(group.teams).every(
-            (team) => team.round_one_show === true
-          );
-          const round_two_show = Object.values(group.teams).every(
-            (team) => team.round_two_show === true
-          );
-
-          if (round_one_show === true) {
-            group.teams.map((team) => {
-              if (team.team_index % 2 == 1) {
-                team.point.question = team.point_after_steal.question;
-              }
-              if (team.team_index % 2 == 0) {
-                team.point.answer = team.point_after_steal.answer;
-              }
-              team.point.total =
-                team.point.answer + team.point.question + team.point.present;
-              return { ...team };
-            });
-          }
-
-          if (round_two_show === true) {
-            group.teams.map((team) => {
-              if (team.team_index % 2 == 0) {
-                team.point.question = team.point_after_steal.question;
-              }
-              if (team.team_index % 2 == 1) {
-                team.point.answer = team.point_after_steal.answer;
-              }
-              team.point.total =
-                team.point.answer + team.point.question + team.point.present;
-              return { ...team };
-            });
-          }
-
-          return {
-            ...group,
-            round_one_show: round_one_show,
-            round_two_show: round_two_show,
-          };
-        });
+        updateData();
       }
     });
 
