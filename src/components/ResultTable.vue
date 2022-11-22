@@ -1,6 +1,10 @@
 <template>
+  <div id="cantidadMujeres"></div>
   <div class="table-responsive bg-light p-3 pt-5 pb-5 table-radius">
-    <table class="table table-light table-borderless">
+    <table
+      class="table table-light table-borderless"
+      style="border-collapse: collapse"
+    >
       <thead class="border-bottom border-3 border-warning">
         <tr>
           <td></td>
@@ -15,21 +19,27 @@
           <td>Đ.TRÌNH BÀY</td>
           <td>Đ.HỎI</td>
           <td>Đ.ĐÁP</td>
-          <td style="min-width: 7rem">HỎI</td>
-          <td style="min-width: 7rem">TRẢ LỜI</td>
+          <td style="min-width: 7rem">VOTE.HỎI</td>
+          <td style="min-width: 7rem">VOTE.TRẢ LỜI</td>
           <th>TỔNG</th>
         </tr>
       </thead>
-      <tbody>
+      <TransitionGroup tag="tbody" name="fadegroup">
         <tr>
           &nbsp;
         </tr>
-        <tr v-for="item in data" :key="item.id">
+        <tr
+          v-for="item in data"
+          :key="item.id"
+          :class="[
+            item.team_index % 2 == 1 && show_border ? 'border_bottom' : '',
+          ]"
+        >
           <th>{{ item.name }}</th>
           <td>{{ item.point.present }}</td>
           <td>
             <!-- question -->
-            <Transition name="fade" mode="out-in">
+            <Transition name="fade" mode="out-in" @enter="enter">
               <p :key="item.point.question">{{ item.point.question }}</p>
             </Transition>
           </td>
@@ -53,12 +63,12 @@
                 <div class="point vote">
                   <p
                     :class="[
-                      item.vote.question_win === true
+                      item.opposite.vote.question_win === true
                         ? 'vote answer-win'
                         : 'vote',
                     ]"
                   >
-                    {{ item.vote.question }}
+                    {{ item.opposite.vote.question }}/{{ item.vote.total }}
                   </p>
                 </div>
               </template>
@@ -83,7 +93,7 @@
                         : 'vote',
                     ]"
                   >
-                    {{ item.vote.answer }}
+                    {{ item.vote.answer }}/{{ item.vote.total }}
                   </p>
                 </div>
               </template>
@@ -95,7 +105,7 @@
             </Transition>
           </th>
         </tr>
-      </tbody>
+      </TransitionGroup>
     </table>
   </div>
 </template>
@@ -103,10 +113,12 @@
 <script>
 import ApiService from "@/services/api.service";
 import { onMounted, ref, watchEffect } from "vue";
+
 export default {
   setup() {
     const data = ref([]);
     const interval = ref(null);
+    const show_border = ref(true);
 
     onMounted(() => {
       getData();
@@ -136,7 +148,12 @@ export default {
         if (team.show_vote == true) {
           remote_interval();
           is_sort_data = true;
-          team.point.question = team.point_after_steal.question;
+          // team.point.question = team.point_after_steal.question;
+          data.value.forEach((vteam) => {
+            if (vteam.group.id == team.group.id && vteam.id != team.id) {
+              vteam.point.question = vteam.point_after_steal.question;
+            }
+          });
           team.point.answer = team.point_after_steal.answer;
           team.point.total =
             team.point.answer + team.point.question + team.point.present;
@@ -145,6 +162,7 @@ export default {
 
       // sort data
       if (is_sort_data == true) {
+        show_border.value = false;
         data.value.sort((a, b) => b.point.total - a.point.total);
       }
     };
@@ -156,6 +174,7 @@ export default {
     return {
       data,
       updateData,
+      show_border,
     };
   },
 };
