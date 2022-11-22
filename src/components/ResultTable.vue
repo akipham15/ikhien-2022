@@ -19,8 +19,8 @@
           <td>Đ.TRÌNH BÀY</td>
           <td>Đ.HỎI</td>
           <td>Đ.ĐÁP</td>
-          <td style="min-width: 7rem">VOTE.HỎI</td>
-          <td style="min-width: 7rem">VOTE.TRẢ LỜI</td>
+          <td style="min-width: 11rem">VOTE.HỎI</td>
+          <td style="min-width: 11rem">VOTE.TRẢ LỜI</td>
           <th>TỔNG</th>
         </tr>
       </thead>
@@ -144,21 +144,28 @@ export default {
 
     const updateData = () => {
       let is_sort_data = false;
-      data.value.forEach((team) => {
+      for (const team of data.value) {
         if (team.show_vote == true) {
           remote_interval();
           is_sort_data = true;
           // team.point.question = team.point_after_steal.question;
-          data.value.forEach((vteam) => {
-            if (vteam.group.id == team.group.id && vteam.id != team.id) {
-              vteam.point.question = vteam.point_after_steal.question;
+          for (const vteam of data.value) {
+            if (vteam.group.id == team.group.id) {
+              if (vteam.id == team.id) {
+                team.point.answer = team.point_after_steal.answer;
+                team.point.total =
+                  team.point.answer + team.point.question + team.point.present;
+              } else {
+                vteam.point.question = vteam.point_after_steal.question;
+                vteam.point.total =
+                  vteam.point.answer +
+                  vteam.point.question +
+                  vteam.point.present;
+              }
             }
-          });
-          team.point.answer = team.point_after_steal.answer;
-          team.point.total =
-            team.point.answer + team.point.question + team.point.present;
+          }
         }
-      });
+      }
 
       // sort data
       if (is_sort_data == true) {
