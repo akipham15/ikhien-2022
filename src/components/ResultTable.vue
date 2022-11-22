@@ -16,7 +16,7 @@
           <td>Đ.HỎI</td>
           <td>Đ.ĐÁP</td>
           <td style="min-width: 7rem">HỎI</td>
-          <td>TRẢ LỜI</td>
+          <td style="min-width: 7rem">TRẢ LỜI</td>
           <th>TỔNG</th>
         </tr>
       </thead>
@@ -42,25 +42,24 @@
           <td>
             <!-- round 1 -->
             <div
-              v-if="!item.round_one_show"
+              v-if="!item.show_vote"
               class="col col-10 point-hidden"
-              @click="item.round_one_show = true"
+              @click="item.show_vote = true"
             >
               &nbsp;
             </div>
             <Transition name="fade" mode="out-in">
-              <template v-if="item.round_one_show">
-                <div v-if="item.team_index % 2 == 0" class="point">
+              <template v-if="item.show_vote">
+                <div class="point vote">
                   <p
                     :class="[
-                      item.answer_win === true ? 'vote answer-win' : 'vote',
+                      item.vote.question_win === true
+                        ? 'vote answer-win'
+                        : 'vote',
                     ]"
                   >
-                    {{ item.answer_vote }}
+                    {{ item.vote.question }}
                   </p>
-                </div>
-                <div v-else class="point vote">
-                  {{ item.question_vote }}
                 </div>
               </template>
             </Transition>
@@ -68,25 +67,24 @@
           <td>
             <!-- round 2 -->
             <div
-              v-if="!item.round_two_show"
+              v-if="!item.show_vote"
               class="col col-10 point-hidden"
-              @click="item.round_two_show = true"
+              @click="item.show_vote = true"
             >
               &nbsp;
             </div>
             <Transition name="fade" mode="out-in">
-              <template v-if="item.round_two_show">
-                <div v-if="item.team_index % 2 == 1" class="point">
+              <template v-if="item.show_vote">
+                <div class="point vote">
                   <p
                     :class="[
-                      item.answer_win === true ? 'vote answer-win' : 'vote',
+                      item.vote.answer_win === true
+                        ? 'vote answer-win'
+                        : 'vote',
                     ]"
                   >
-                    {{ item.answer_vote }}
+                    {{ item.vote.answer }}
                   </p>
-                </div>
-                <div v-else class="point vote">
-                  {{ item.question_vote }}
                 </div>
               </template>
             </Transition>
@@ -126,8 +124,6 @@ export default {
       const stopWatchEffect = watchEffect(() => {
         if (gData && gData.value) {
           data.value = gData.value;
-          // data.value = data.value.map((item, i) => Object.assign({}, item, gData.value[i]));
-
           updateData();
           stopWatchEffect();
         }
@@ -137,43 +133,13 @@ export default {
     const updateData = () => {
       let is_sort_data = false;
       data.value.forEach((team) => {
-        if (team.round_one_show == true) {
+        if (team.show_vote == true) {
           remote_interval();
           is_sort_data = true;
-          data.value
-            .filter((filter_team) => {
-              return team.group.id == filter_team.group.id;
-            })
-            .forEach((vteam) => {
-              vteam.round_one_show = true;
-              if (vteam.team_index % 2 == 1) {
-                vteam.point.question = vteam.point_after_steal.question;
-              }
-              if (vteam.team_index % 2 == 0) {
-                vteam.point.answer = vteam.point_after_steal.answer;
-              }
-              vteam.point.total =
-                vteam.point.answer + vteam.point.question + vteam.point.present;
-            });
-        }
-        if (team.round_two_show == true) {
-          remote_interval();
-          is_sort_data = true;
-          data.value
-            .filter((filter_team) => {
-              return team.group.id == filter_team.group.id;
-            })
-            .forEach((vteam) => {
-              vteam.round_two_show = true;
-              if (vteam.team_index % 2 == 0) {
-                vteam.point.question = vteam.point_after_steal.question;
-              }
-              if (vteam.team_index % 2 == 1) {
-                vteam.point.answer = vteam.point_after_steal.answer;
-              }
-              vteam.point.total =
-                vteam.point.answer + vteam.point.question + vteam.point.present;
-            });
+          team.point.question = team.point_after_steal.question;
+          team.point.answer = team.point_after_steal.answer;
+          team.point.total =
+            team.point.answer + team.point.question + team.point.present;
         }
       });
 
