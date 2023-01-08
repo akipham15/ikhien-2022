@@ -1,0 +1,26 @@
+{
+  "data": {
+    "results": [
+      {
+        "name": "Team 01",
+        "point": 41,
+        "vote": 5647
+      },
+      {
+        "name": "Team 02",
+        "point": 49,
+        "vote": 3023
+      },
+      {
+        "name": "Team 03",
+        "point": 54,
+        "vote": 1038
+      },
+      {
+        "name": "Team 04",
+        "point": 39,
+        "vote": 1024
+      }
+    ]
+  }
+}

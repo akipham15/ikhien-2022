@@ -6,7 +6,7 @@ import axios from 'axios'
 // axios.defaults.withCredentials = true
 
 const instance = axios.create({
-    baseURL: 'https://hnld.bot.csoc.fpt.net/',
+    baseURL: 'http://localhost:3000/',
 
     timeout: 5000,
     timeoutErrorMessage: 'Timeout'

@@ -1,5 +1,5 @@
 {
-  "name": "hnld-2022",
+  "name": "ikhien-2022",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "bootstrap": "^5.2.2",
     "core-js": "^3.8.3",
     "jquery": "^3.6.1",
+    "json-server": "^0.17.1",
     "popper.js": "^1.16.1",
     "sass": "^1.56.1",
     "vue": "^3.2.13",
