@@ -18,6 +18,22 @@ class ApiService {
 
         return { data }
     }
+    getHistory = () => {
+        const data = ref(null)
+
+        api({
+            url: `/api/history/default/`,
+            method: 'GET',
+        }).then(res => {
+            if (res && res.status == 200) {
+                data.value = res.data.results
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+
+        return { data }
+    }
 }
 
 

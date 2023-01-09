@@ -4,22 +4,24 @@
 
 body {
     margin-top: 10vh;
-    background-color: #9b8975;
+    // background-color: #9b8975;
 }
 
 .team {
-    background-color: #2d3e50;
+    // color: #ffffff;
+    color: #f6f6f7;
+    background-color: #AD8E70;
     font-weight: bold;
 }
 
 .point {
-    background-color: #fff8dc;
+    background-color: #F8EDE3;
     text-align: center;
     font-weight: bold;
 }
 
 .vote{
-    background-color: #ffe9d7;
+    background-color: #FFEBB7;
     text-align: center;
     font-weight: bold;
 }
@@ -27,8 +29,16 @@ body {
 .header {
     font-size: 5rem;
     font-weight: bold;
-    color: #dcf2ff;
+    color: #FF6E31;
     text-align: center;
+}
+
+.title{
+    color: #243763;
+}
+
+.router-link-active{
+    font-weight: bold;
 }
 
 /* 1. declare transition */
