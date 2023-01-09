@@ -25,7 +25,7 @@ import { ref } from "@vue/reactivity";
 // @ is an alias to /src
 
 import ApiService from "../services/api.service";
-import { onMounted, onUnmounted, watchEffect } from "@vue/runtime-core";
+import { onBeforeUnmount, onMounted, watchEffect } from "@vue/runtime-core";
 export default {
   components: {},
   setup() {
@@ -38,7 +38,6 @@ export default {
         if (gTeams && gTeams.value) {
           gTeams.value.sort((a, b) => b.point - a.point);
           teams.value = gTeams.value;
-          console.log(gTeams.value);
           stopWatchEffect();
         }
       });
@@ -49,8 +48,10 @@ export default {
       intervalId.value = setInterval(getTeams, 3000);
     });
 
-    onUnmounted(() => {
-      clearInterval(intervalId);
+    onBeforeUnmount(() => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
     });
 
     return { teams };

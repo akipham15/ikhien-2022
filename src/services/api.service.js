@@ -6,12 +6,11 @@ class ApiService {
         const data = ref(null)
 
         api({
-            url: `/data/`,
+            url: `/api/data/default/`,
             method: 'GET',
         }).then(res => {
             if (res && res.status == 200) {
                 data.value = res.data.results
-                console.log(data.value)
             }
         }).catch(err => {
             console.log(err)
