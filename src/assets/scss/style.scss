@@ -10,18 +10,18 @@ body {
 .team {
     // color: #ffffff;
     color: #f6f6f7;
-    background-color: #AD8E70;
+    background-color: #ad8e70;
     font-weight: bold;
 }
 
 .point {
-    background-color: #F8EDE3;
+    background-color: #f8ede3;
     text-align: center;
     font-weight: bold;
 }
 
-.vote{
-    background-color: #FFEBB7;
+.vote {
+    background-color: #ffebb7;
     text-align: center;
     font-weight: bold;
 }
@@ -29,15 +29,19 @@ body {
 .header {
     font-size: 5rem;
     font-weight: bold;
-    color: #FF6E31;
+    color: #ff6e31;
     text-align: center;
 }
 
-.title{
+.title {
     color: #243763;
 }
 
-.router-link-active{
+.vote-panel {
+    margin-top: 40vh;
+}
+
+.router-link-active {
     font-weight: bold;
 }
 
