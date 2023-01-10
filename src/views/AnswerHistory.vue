@@ -6,12 +6,12 @@
       <table class="table table-sm table-bordered">
         <tr>
           <th>#</th>
-          <th>email</th>
-          <th>team_name</th>
-          <th>type</th>
-          <th>point</th>
-          <th>weight</th>
-          <th>created</th>
+          <th>Email</th>
+          <th>Project</th>
+          <th>Type</th>
+          <th>Point</th>
+          <th>Weight</th>
+          <th>Created</th>
         </tr>
         <template v-if="histories">
           <tr v-for="history in histories" :key="history.id">
